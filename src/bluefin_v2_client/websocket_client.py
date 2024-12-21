@@ -128,7 +128,7 @@ class WebsocketClient:
             return True
         except:
             return False
-    
+
     async def subscribe_orderbook_depth_streams_by_symbol(self, symbol: MARKET_SYMBOLS, depth=""):
         """
             Allows user to subscribe to orderbook depth stream for the desired symbol.
@@ -149,9 +149,9 @@ class WebsocketClient:
         except:
             return False
 
-    async def subscribe_orderbook_depth_streams_by_symbol(self, symbol: MARKET_SYMBOLS, depth=""):
+    async def unsubscribe_orderbook_depth_streams_by_symbol(self, symbol: MARKET_SYMBOLS, depth=""):
         """
-            Allows user to subscribe to orderbook depth stream for the desired symbol.
+            Allows user to unsubscribe to orderbook depth stream for the desired symbol.
             Inputs:
                 - symbol: market symbol of market user wants orderbook depth stream for. (e.g. ETH-PERP)
                 - depth: depth of orderbook depth stream (optional)
@@ -168,7 +168,6 @@ class WebsocketClient:
             return True
         except:
             return False
-
 
     def subscribe_user_update_by_token(self, user_token: str = None):
         """
@@ -188,9 +187,9 @@ class WebsocketClient:
                             [
                                 {
                                     "e": SOCKET_EVENTS.USER_UPDATES_ROOM.value,
-                                    "t": self.token
-                                    if user_token == None
-                                    else user_token,
+                                    "t": (
+                                        self.token if user_token == None else user_token
+                                    ),
                                     "rt": self.api_token,
                                 },
                             ],
@@ -220,9 +219,9 @@ class WebsocketClient:
                             [
                                 {
                                     "e": SOCKET_EVENTS.USER_UPDATES_ROOM.value,
-                                    "t": self.token
-                                    if user_token == None
-                                    else user_token,
+                                    "t": (
+                                        self.token if user_token == None else user_token
+                                    ),
                                     "rt": self.api_token,
                                 },
                             ],

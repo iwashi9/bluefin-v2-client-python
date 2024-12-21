@@ -60,6 +60,7 @@ class SocketManager(threading.Thread):
             except WebSocketException as e:
                 if isinstance(e, WebSocketConnectionClosedException):
                     self.logger.error("Lost websocket connection")
+                    self._callback(self.on_close)
                 else:
                     self.logger.error("Websocket exception: {}".format(e))
                 raise e
